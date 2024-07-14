@@ -1,21 +1,54 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import tw from 'twrnc';
-import './src/styles/global.css';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import 'react-native-gesture-handler';
+import Detail from './src/pages/Detail';
+import Home from './src/pages/Home';
+const Stack = createStackNavigator();
+
 export default function App() {
 	return (
-		<View style={tw`flex justify-center  items-center w-full h-full `}>
-			<Text style={tw`text-red-500`}>Mening birinchi mobile app ilovam</Text>
-			<StatusBar style='auto' />
-		</View>
+		<SafeAreaView style={styles.container}>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen name='Homes' component={Home} />
+					<Stack.Screen name='Detail' component={Detail} />
+				</Stack.Navigator>
+			</NavigationContainer>
+			<StatusBar
+				animated={true}
+				backgroundColor='#61dafb'
+				barStyle={'dark-content'}
+				translucent={true}
+				hidden={true}
+			/>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
+	},
+	block: {
 		justifyContent: 'center',
+		alignItems: 'center',
+		borderColor: '#000',
+		shadowColor: '#000',
+		borderRadius: 16,
+		marginTop: 10,
+		height: 100,
+		width: '100%',
+		shadowColor: '#000',
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10,
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		elevation: 3,
+		shadowOpacity: 0.5,
+		shadowRadius: 10,
 	},
 });
